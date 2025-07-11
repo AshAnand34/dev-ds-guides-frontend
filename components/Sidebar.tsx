@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { Icon } from '@iconify/react';
 import styles from './Sidebar.module.css';
 
 // Type for a node in the folder tree
@@ -16,20 +17,48 @@ type SidebarProps = {
 };
 
 const categoryIcons: Record<string, string> = {
-  'command line': '⌨️',
-  dev: '🛠️',
-  editor: '📝',
-  git: '🌳',
-  json: '🔢',
-  latex: '📄',
-  macos: '🍏',
-  markdown: '🗒️',
-  nodejs: '🟩',
-  python: '🐍',
-  sql: '🗄️',
-  wsl: '🐧',
-  yaml: '📑',
+  'command-line': 'mdi:console', // Command line icon
+  dev: 'mdi:wrench', // Dev tools
+  editor: 'mdi:pencil', // Editors
+  git: 'mdi:git', // Git
+  json: 'mdi:code-json', // JSON
+  latex: 'file-icons:latex', // LaTeX
+  macos: 'mdi:apple', // macOS
+  markdown: 'mdi:markdown', // Markdown
+  nodejs: 'logos:nodejs-icon', // Node.js official
+  python: 'logos:python', // Python official
+  sql: 'mdi:database', // SQL
+  wsl: 'mdi:microsoft-windows', // WSL
+  yaml: 'file-icons:yaml', // YAML
 };
+
+// Display name mapping for user-friendly category names
+const categoryDisplayNames: Record<string, string> = {
+  'command-line': 'Command Line',
+  dev: 'Development Tools',
+  editor: 'Code Editors',
+  git: 'Git & Version Control',
+  json: 'JSON',
+  latex: 'LaTeX',
+  macos: 'macOS',
+  markdown: 'Markdown',
+  nodejs: 'Node.js',
+  python: 'Python',
+  sql: 'SQL & Databases',
+  wsl: 'Windows Subsystem for Linux',
+  yaml: 'YAML',
+};
+
+function getDisplayName(folderName: string): string {
+  const lowerName = folderName.toLowerCase();
+  return categoryDisplayNames[lowerName] || toTitleCase(folderName);
+}
+
+function toTitleCase(str: string) {
+  return str.replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
 
 const Sidebar: React.FC<SidebarProps> = ({ tree }) => {
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({});
@@ -47,7 +76,7 @@ const Sidebar: React.FC<SidebarProps> = ({ tree }) => {
             <div className={styles.categoryPill}>
               <button
                 className={styles.chevronBtn}
-                aria-label={openGroups[node.path] ? `Collapse ${node.name}` : `Expand ${node.name}`}
+                aria-label={openGroups[node.path] ? `Collapse ${getDisplayName(node.name)}` : `Expand ${getDisplayName(node.name)}`}
                 onClick={() => toggleGroup(node.path)}
                 tabIndex={0}
                 type="button"
@@ -62,9 +91,14 @@ const Sidebar: React.FC<SidebarProps> = ({ tree }) => {
                   ▼
                 </span>
               </button>
-              <span className={styles.categoryIcon}>{categoryIcons[node.name.toLowerCase()] || '📁'}</span>
+              <span className={styles.categoryIcon}>
+                <Icon 
+                  icon={categoryIcons[node.name.toLowerCase()] || 'mdi:folder'} 
+                  className={styles.categorySvgIcon}
+                />
+              </span>
               <Link href={node.path} className={styles.categoryLink}>
-                {node.name.replace(/\./g, ' ').replace(/_/g, ' ')}
+                {getDisplayName(node.name)}
               </Link>
             </div>
           ) : (
