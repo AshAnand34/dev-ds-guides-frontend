@@ -1,0 +1,204 @@
+/* Sidebar Modern Styles */
+.sidebar {
+  width: 20rem;
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  transition: background-color 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+}
+.logo:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.navSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.categoryList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.categoryItem {
+  margin: 0;
+}
+
+.categoryPill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-hover);
+  border-radius: 1.5rem;
+  padding: 0.5rem 1.25rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
+  margin-bottom: 0.25rem;
+  margin-right: 0.5rem;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.categoryPill:hover {
+  background: var(--accent-color);
+  color: white;
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08);
+}
+
+.categoryIcon {
+  font-size: 1.3em;
+  margin-right: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.categoryLink {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+  padding: 0.1rem 0;
+}
+.categoryPill:hover .categoryLink {
+  color: white;
+}
+
+.guideList {
+  list-style: none;
+  margin: 0.25rem 0 0.25rem 1.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-left: 2px solid var(--border-color);
+}
+
+.guideItem {
+  margin: 0;
+}
+
+.guideLink {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.375rem;
+  display: block;
+  transition: background 0.2s, color 0.2s;
+}
+.guideLink:hover {
+  background: var(--bg-hover);
+  color: var(--accent-color);
+}
+
+.chevronBtn {
+  background: none;
+  border: none;
+  padding: 0 0.25rem 0 0;
+  margin-right: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+  color: var(--text-secondary);
+  font-size: 1.1em;
+  outline: none;
+}
+.chevronBtn:focus {
+  color: var(--accent-color);
+}
+.chevron {
+  display: inline-block;
+  transition: transform 0.2s;
+  font-size: 1.1em;
+  margin-right: 0.1em;
+}
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.categoryPill:hover .chevron,
+.categoryPill:focus-within .chevron {
+  color: white;
+}
+
+/* Custom Scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 16rem;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .container {
+    padding: 0.75rem;
+  }
+  .logo {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .categoryPill {
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+  }
+  .guideList {
+    margin-left: 1rem;
+  }
+}
+
+/* Dark mode support is automatic via CSS variables */ 
