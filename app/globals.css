@@ -2,19 +2,19 @@
 
 /* CSS Variables for theme colors */
 :root {
-  /* Light theme */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-hover: #f3f4f6;
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --border-color: #e5e7eb;
-  --accent-color: #2563eb;
-  --accent-hover: #1d4ed8;
-  --code-bg: #f3f4f6;
-  --code-text: #d6336c;
-  --pre-bg: #1f2937;
-  --pre-text: #e5e7eb;
+  /* Light theme - modern, soft palette */
+  --bg-primary: #f7f8fa;         /* Soft off-white background */
+  --bg-secondary: #f0f2f6;       /* Slightly deeper surface */
+  --bg-hover: #e6e8ef;           /* Subtle hover for surfaces */
+  --text-primary: #23272f;       /* Deep, modern gray for text */
+  --text-secondary: #6d7587;     /* Muted secondary text */
+  --border-color: #e0e3ea;       /* Soft border */
+  --accent-color: #3b82f6;       /* Modern blue (Tailwind blue-500) */
+  --accent-hover: #2563eb;       /* Slightly deeper blue for hover */
+  --code-bg: #eef1f6;            /* Gentle code block background */
+  --code-text: #b91c1c;          /* Modern red for code */
+  --pre-bg: #23272f;             /* Consistent with dark text for code blocks */
+  --pre-text: #e0e3ea;           /* Light text for code blocks */
 }
 
 [data-theme="dark"] {
